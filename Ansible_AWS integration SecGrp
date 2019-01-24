@@ -1,0 +1,20 @@
+---
+-  hosts: control
+   connection: local
+   gather_facts: true
+   tasks:
+     - name: Create a security group in AWS for SSH access & HTTP
+       ec2_group:
+         name: ansible
+         description: Ansible security group
+         region: eu-west-2
+         rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 22
+            to_port : 22
+            cidr_ip: 0.0.0.0/0
+...
